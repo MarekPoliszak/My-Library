@@ -4,7 +4,6 @@ import com.poliszak.marek.spring5webapp.domain.Book;
 import com.poliszak.marek.spring5webapp.repositories.BookRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -23,9 +22,9 @@ public class BookController {
         return "list";
     }
 
-    @PostMapping("/books/add")
+    @RequestMapping("/books/add")
     public String addBooks() {
 
-        return "list";
+        return "addbooks";
     }
 }
