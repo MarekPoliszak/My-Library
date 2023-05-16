@@ -1,4 +1,4 @@
-package com.poliszak.marek.spring5webapp;
+package com.poliszak.marek.my_library;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

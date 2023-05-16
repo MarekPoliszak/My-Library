@@ -1,4 +1,4 @@
-package com.poliszak.marek.spring5webapp.domain;
+package com.poliszak.marek.my_library.domain;
 
 
 import javax.persistence.*;
