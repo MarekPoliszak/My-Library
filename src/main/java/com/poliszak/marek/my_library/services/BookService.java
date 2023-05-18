@@ -26,17 +26,16 @@ public class BookService {
     private PublisherRepository publisherRepository;
 
 
-
     //Add new book to the library
-    public Book addBooks(Book book) {
-        if(bookRepository.existsById(book.getId())) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "Event already exists");
+    public Book add(Book book) {
+        if(bookRepository.existsByTitle(book.getTitle())) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Book already in the Library.");
         }
         return this.bookRepository.save(book);
     }
 
     //Find and return a book by its ID
-    public Book findById(Long id) {
+    public Book findById(long id) {
         Optional<Book> bookToFindOptional = bookRepository.findById(id);
         if(bookToFindOptional.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Book is not in the Library.");
@@ -52,12 +51,12 @@ public class BookService {
     //Delete books from library by its IDs
     public List<Book> deleteById(long[] booksIds) {
         List<Book> deletedBooks = new ArrayList<>();
-        for (Long bookId: booksIds) {
-            Optional<Book> eventToDeleteOptional = bookRepository.findById(bookId);
-            if(eventToDeleteOptional.isEmpty()) {
+        for (long bookId: booksIds) {
+            Optional<Book> bookToDeleteOptional = bookRepository.findById(bookId);
+            if(bookToDeleteOptional.isEmpty()) {
                 throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Book is not in the Library.");
             }
-            Book bookToDelete = eventToDeleteOptional.get();
+            Book bookToDelete = bookToDeleteOptional.get();
             deletedBooks.add(bookToDelete);
             this.bookRepository.delete(bookToDelete);
         }

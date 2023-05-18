@@ -16,7 +16,7 @@ public class BookController {
 
     @GetMapping
     public Iterable<Book> getAllBooks() {
-        return this.bookService.findAll();
+        return bookService.findAll();
     }
 
     @PostMapping
@@ -26,12 +26,12 @@ public class BookController {
 
     @PostMapping("/add")
     public Book addBook(@RequestBody Book book) {
-        return bookService.addBooks(book);
+        return bookService.add(book);
     }
 
     @DeleteMapping("/delete")
-    public List<Book> deleteByIds(@RequestParam long[] ids) {
-        return bookService.deleteById(ids);
+    public List<Book> deleteByIds(@RequestParam long[] id) {
+        return bookService.deleteById(id);
     }
 
     @PutMapping("/update")
