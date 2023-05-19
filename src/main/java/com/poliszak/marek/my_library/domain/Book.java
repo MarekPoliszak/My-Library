@@ -1,5 +1,7 @@
 package com.poliszak.marek.my_library.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -12,8 +14,8 @@ import java.util.Set;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString(exclude = "authors")
-@EqualsAndHashCode(exclude = "authors")
+@ToString(exclude = {"authors", "publisher"})
+@EqualsAndHashCode(of = "id")
 public class Book {
 
     @Id
@@ -24,11 +26,13 @@ public class Book {
     private String isbn;
 
     @ManyToOne
+    //@JsonManagedReference
     private Publisher publisher;
 
     @ManyToMany
     @JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"),
             inverseJoinColumns = @JoinColumn(name = "author_id"))
+    //@JsonManagedReference
     private Set<Author> authors = new HashSet<>();
 
 }

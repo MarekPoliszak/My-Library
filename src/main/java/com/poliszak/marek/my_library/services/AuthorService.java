@@ -19,7 +19,7 @@ public class AuthorService {
 
     //Add new author
     public Author add(Author author) {
-        if(authorRepository.existsById(author.getId())) {
+        if(authorRepository.existsByFirstNameAndLastName(author.getFirstName(), author.getLastName())) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Author already exists");
         }
         return this.authorRepository.save(author);

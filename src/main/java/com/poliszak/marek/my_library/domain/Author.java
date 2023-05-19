@@ -1,6 +1,8 @@
 package com.poliszak.marek.my_library.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -14,7 +16,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString(exclude = "books")
-@EqualsAndHashCode(exclude = "books")
+@EqualsAndHashCode(of = "id")
 public class Author {
 
     @Id
@@ -25,6 +27,7 @@ public class Author {
     private String lastName;
 
     @ManyToMany(mappedBy = "authors")
+    @JsonBackReference
     private Set<Book> books = new HashSet<>();
 
 }

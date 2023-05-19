@@ -16,7 +16,9 @@ public class BookController {
 
     @GetMapping
     public Iterable<Book> getAllBooks() {
-        return bookService.findAll();
+        Iterable<Book> books = bookService.findAll();
+        System.out.println(books);
+        return books;
     }
 
     @PostMapping
