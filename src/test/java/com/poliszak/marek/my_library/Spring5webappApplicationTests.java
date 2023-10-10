@@ -1,4 +1,4 @@
-package com.poliszak.marek.spring5webapp;
+package com.poliszak.marek.my_library;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
