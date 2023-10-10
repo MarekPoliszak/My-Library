@@ -1,7 +1,7 @@
-package com.poliszak.marek.my_library.controllers;
+package com.poliszak.marek.my_library.controller;
 
 import com.poliszak.marek.my_library.domain.Author;
-import com.poliszak.marek.my_library.services.AuthorService;
+import com.poliszak.marek.my_library.service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,8 +11,11 @@ import java.util.List;
 @RequestMapping("/authors")
 public class AuthorController {
 
-    @Autowired
-    private AuthorService authorService;
+    private final AuthorService authorService;
+
+    public AuthorController(AuthorService authorService) {
+        this.authorService = authorService;
+    }
 
     @GetMapping
     public Iterable<Author> getAllAuthors() { return this.authorService.findAll(); }

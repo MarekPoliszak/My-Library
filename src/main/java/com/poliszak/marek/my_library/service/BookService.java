@@ -1,9 +1,9 @@
-package com.poliszak.marek.my_library.services;
+package com.poliszak.marek.my_library.service;
 
 import com.poliszak.marek.my_library.domain.Book;
-import com.poliszak.marek.my_library.repositories.AuthorRepository;
-import com.poliszak.marek.my_library.repositories.BookRepository;
-import com.poliszak.marek.my_library.repositories.PublisherRepository;
+import com.poliszak.marek.my_library.repository.AuthorRepository;
+import com.poliszak.marek.my_library.repository.BookRepository;
+import com.poliszak.marek.my_library.repository.PublisherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -16,15 +16,11 @@ import java.util.Optional;
 @Service
 public class BookService {
 
-    @Autowired
-    private BookRepository bookRepository;
+    private final BookRepository bookRepository;
 
-    @Autowired
-    private AuthorRepository authorRepository;
-
-    @Autowired
-    private PublisherRepository publisherRepository;
-
+    public BookService(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
+    }
 
     //Add new book to the library
     public Book add(Book book) {

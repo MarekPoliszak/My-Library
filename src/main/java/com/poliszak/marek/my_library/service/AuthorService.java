@@ -1,7 +1,7 @@
-package com.poliszak.marek.my_library.services;
+package com.poliszak.marek.my_library.service;
 
 import com.poliszak.marek.my_library.domain.Author;
-import com.poliszak.marek.my_library.repositories.AuthorRepository;
+import com.poliszak.marek.my_library.repository.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -14,8 +14,11 @@ import java.util.Optional;
 @Service
 public class AuthorService {
 
-    @Autowired
-    private AuthorRepository authorRepository;
+    private final AuthorRepository authorRepository;
+
+    public AuthorService(AuthorRepository authorRepository) {
+        this.authorRepository = authorRepository;
+    }
 
     //Add new author
     public Author add(Author author) {

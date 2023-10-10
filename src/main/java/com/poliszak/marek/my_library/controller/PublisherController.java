@@ -1,8 +1,7 @@
-package com.poliszak.marek.my_library.controllers;
+package com.poliszak.marek.my_library.controller;
 
-import com.poliszak.marek.my_library.domain.Author;
 import com.poliszak.marek.my_library.domain.Publisher;
-import com.poliszak.marek.my_library.services.PublisherService;
+import com.poliszak.marek.my_library.service.PublisherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,8 +11,11 @@ import java.util.List;
 @RequestMapping("/publishers")
 public class PublisherController {
 
-    @Autowired
-    private PublisherService publisherService;
+    private final PublisherService publisherService;
+
+    public PublisherController(PublisherService publisherService) {
+        this.publisherService = publisherService;
+    }
 
     @GetMapping
     public Iterable<Publisher> getAllPublisher() { return this.publisherService.findAll(); }

@@ -1,7 +1,7 @@
-package com.poliszak.marek.my_library.controllers;
+package com.poliszak.marek.my_library.controller;
 
 import com.poliszak.marek.my_library.domain.Book;
-import com.poliszak.marek.my_library.services.BookService;
+import com.poliszak.marek.my_library.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,13 +11,15 @@ import java.util.List;
 @RequestMapping("/books")
 public class BookController {
 
-    @Autowired
-    private BookService bookService;
+    private final BookService bookService;
+
+    public BookController(BookService bookService) {
+        this.bookService = bookService;
+    }
 
     @GetMapping
     public Iterable<Book> getAllBooks() {
         Iterable<Book> books = bookService.findAll();
-        System.out.println(books);
         return books;
     }
 

@@ -1,8 +1,7 @@
-package com.poliszak.marek.my_library.services;
+package com.poliszak.marek.my_library.service;
 
-import com.poliszak.marek.my_library.domain.Author;
 import com.poliszak.marek.my_library.domain.Publisher;
-import com.poliszak.marek.my_library.repositories.PublisherRepository;
+import com.poliszak.marek.my_library.repository.PublisherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -16,7 +15,11 @@ import java.util.Optional;
 public class PublisherService {
 
     @Autowired
-    private PublisherRepository publisherRepository;
+    private  final PublisherRepository publisherRepository;
+
+    public PublisherService(PublisherRepository publisherRepository) {
+        this.publisherRepository = publisherRepository;
+    }
 
     //Add new publisher
     public Publisher add(Publisher publisher) {
